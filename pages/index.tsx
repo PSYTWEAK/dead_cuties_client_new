@@ -4,9 +4,10 @@ import Link from "next/link";
 import Account from "../components/Account";
 import ETHBalance from "../components/ETHBalance";
 import TokenBalance from "../components/TokenBalance";
+import ClaimAccessToken from "../components/ClaimAccessToken";
 import useEagerConnect from "../hooks/useEagerConnect";
 
-const DAI_TOKEN_ADDRESS = "0x6b175474e89094c44da98b954eedeac495271d0f";
+const ACCESS_TOKEN_ADDRESS = "0x6b175474e89094c44da98b954eedeac495271d0f";
 
 function Home() {
   const { account, library } = useWeb3React();
@@ -34,17 +35,15 @@ function Home() {
 
       <main>
         <h1>
-          Welcome to{" "}
-          <a href="https://github.com/mirshko/next-web3-boilerplate">
-            next-web3-boilerplate
-          </a>
+          <a>The Dead Cuties</a>
         </h1>
 
         {isConnected && (
           <section>
             <ETHBalance />
+            <ClaimAccessToken tokenAddress={ACCESS_TOKEN_ADDRESS} />
 
-            <TokenBalance tokenAddress={DAI_TOKEN_ADDRESS} symbol="DAI" />
+            <TokenBalance tokenAddress={ACCESS_TOKEN_ADDRESS} symbol="Access Token" />
           </section>
         )}
       </main>
