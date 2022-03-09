@@ -1,1 +1,8 @@
-{}
+{
+  "../hooks/useMetaMaskOnboarding.ts -> @metamask/onboarding": {
+    "id": 8054,
+    "files": [
+      "static/chunks/54.811c71f2036c7c4c.js"
+    ]
+  }
+}
