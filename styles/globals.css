@@ -28,7 +28,7 @@
     transform: translateX(-50vw) scaleX(-1);
   }
 
-  39% {
+  42% {
     opacity: 1;
   }
 
@@ -45,43 +45,119 @@
 
 @keyframes animate-elements {
   0% {
-    opacity: 0.2;
-    filter: hue-rotate(80deg);
+    opacity: 0.5;
   }
 
   25% {
-    opacity: 0.2;
-    filter: hue-rotate(80deg);
+    opacity: 0.5;
   }
 
   30% {
     opacity: 1;
-    filter: hue-rotate(0deg);
   }
 
   35% {
-    opacity: 0.2;
-    filter: hue-rotate(80deg);
+    opacity: 0.5;
   }
 
   37% {
-    opacity: 0.2;
-    filter: hue-rotate(80deg);
+    opacity: 0.5;
   }
 
   39% {
     opacity: 1;
-    filter: hue-rotate(0deg);
   }
 
   50% {
-    opacity: 0.2;
-    filter: hue-rotate(80deg);
+    opacity: 0.5;
   }
 
   100% {
-    opacity: 0.2;
-    filter: hue-rotate(80deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes move-ghosts {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+
+  10% {
+    transform: translate(15vw, -2vh);
+  }
+
+  20% {
+    transform: translate(30vw, 2vh);
+  }
+
+  30% {
+    transform: translate(45vw, -1vh);
+  }
+
+  40% {
+    transform: translate(60vw, 1vh);
+  }
+
+  50% {
+    transform: translate(75vw, 3vh);
+  }
+
+  60% {
+    transform: translate(90vw, -3vh);
+  }
+
+  70% {
+    transform: translate(105vw, 3vh);
+  }
+
+  80% {
+    transform: translate(120vw, 0vh);
+  }
+
+  100% {
+    transform: translate(120vw, 0vh);
+  }
+}
+
+@keyframes move-ghosts-to-left {
+  100% {
+    transform: translate(0vw, 0vh) scaleX(-1);
+  }
+
+  90% {
+    transform: translate(15vw, -2vh) scaleX(-1);
+  }
+
+  80% {
+    transform: translate(30vw, 2vh) scaleX(-1);
+  }
+
+  70% {
+    transform: translate(45vw, -1vh) scaleX(-1);
+  }
+
+  60% {
+    transform: translate(60vw, 1vh) scaleX(-1);
+  }
+
+  50% {
+    transform: translate(75vw, 3vh) scaleX(-1);
+  }
+
+  40% {
+    transform: translate(90vw, -3vh) scaleX(-1);
+  }
+
+  30% {
+    transform: translate(105vw, 3vh) scaleX(-1);
+  }
+
+  20% {
+    transform: translate(120vw, 0vh) scaleX(-1);
+  }
+
+  0% {
+    transform: translate(120vw, 0vh) scaleX(-1);
   }
 }
 
@@ -96,6 +172,7 @@ body {
   color: rgb(150, 150, 150);
   font-family: 'Jolly Lodger', cursive;
 
+  overflow: hidden;
 }
 
 a {
@@ -116,7 +193,6 @@ main {
   align-items: center;
 }
 
-
 h1 {
   font-size: 200px;
   margin: 0px;
@@ -130,7 +206,7 @@ h2 {
 
 hgroup {
   animation: animate-elements 3s linear infinite;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .canvas__elements {
@@ -149,7 +225,6 @@ hgroup {
   top: 0;
 }
 
-
 .canvas__ghosts {
   position: absolute;
   width: 100vw;
@@ -158,35 +233,55 @@ hgroup {
   bottom: 0;
   left: 0;
   animation: animate-elements 3s linear infinite;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .canvas__ghosts img {
   position: absolute;
-  width: 100px;
-  left: 10vw;
-  top: 10vw;
+  height: 100px;
+  left: -10vw;
+  top: 2vw;
+  animation: move-ghosts 20s linear infinite;
 }
 
-/* .canvas__elements img:first-child {
-  animation: animate-lightning 2s linear infinite;
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 75px;
+  }
 
-} */
+  h2 {
+    font-size: 25px;
+  }
 
-/* .canvas__elements img:nth-child(2) {
-  left: 25vw;
-  animation: animate-lightning 8s linear infinite 1s;
+  .canvas__ghosts img {
+    height: 50px;
+  }
 }
-.canvas__elements img:nth-child(3) {
-  left: 50vw;
-} */
+
+.canvas__ghosts img:nth-child(2) {
+  position: absolute;
+  top: calc(2vw + 1*(110px));
+  animation: move-ghosts 15s linear infinite;
+}
+
+.canvas__ghosts img:nth-child(3) {
+  position: absolute;
+  top: calc(2vw + 2*(110px));
+  animation: move-ghosts-to-left 15s linear infinite;
+}
+
+.canvas__ghosts img:last-child {
+  position: absolute;
+  top: unset;
+  bottom: 200px;
+  animation: move-ghosts-to-left 12s linear infinite;
+}
 
 .canvas__elements img:last-child {
   left: 50vw;
   animation: animate-lightning 3s linear infinite;
 
 }
-
 
 .canvas__btm {
   position: absolute;
@@ -197,9 +292,26 @@ hgroup {
   left: 0;
   background: url('../public/assets/ground.png');
   background-repeat: repeat-x;
-  opacity: 0.2;
-  /* filter: hue-rotate(60d8g); */
-  /* filter: hue-rotate(60d8g); */
+  opacity: 0.5;
 
   animation: animate-elements 3s linear infinite;
+}
+
+.canvas__btm img {
+  position: inherit;
+  bottom: 50px;
+}
+
+.canvas__btm img:last-child {
+  left: 50vw;
+  transform: scaleX(-1);
+}
+
+.canvas__bg {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
 }
