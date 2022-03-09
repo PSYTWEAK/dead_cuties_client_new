@@ -1,9 +1,101 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Syne+Mono&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap');
+
+/* font-family: 'Syne Mono', cursive; */
+/* font-family: 'Roboto', sans-serif; */
+
+@keyframes animate-lightning {
+  0% {
+    opacity: 0;
+    transform: translateX(0) scaleX(1);
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  35% {
+    opacity: 0;
+    transform: translateX(0) scaleX(1);
+  }
+
+  37% {
+    opacity: 0;
+    transform: translateX(-50vw) scaleX(-1);
+  }
+
+  39% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateX(-50vw) scaleX(-1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes animate-elements {
+  0% {
+    opacity: 0.2;
+    filter: hue-rotate(80deg);
+  }
+
+  25% {
+    opacity: 0.2;
+    filter: hue-rotate(80deg);
+  }
+
+  30% {
+    opacity: 1;
+    filter: hue-rotate(0deg);
+  }
+
+  35% {
+    opacity: 0.2;
+    filter: hue-rotate(80deg);
+  }
+
+  37% {
+    opacity: 0.2;
+    filter: hue-rotate(80deg);
+  }
+
+  39% {
+    opacity: 1;
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    opacity: 0.2;
+    filter: hue-rotate(80deg);
+  }
+
+  100% {
+    opacity: 0.2;
+    filter: hue-rotate(80deg);
+  }
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-image: linear-gradient(to bottom, rgb(16, 17, 26), rgb(25, 26, 49));
+
+  color: rgb(150, 150, 150);
+  font-family: 'Jolly Lodger', cursive;
+
 }
 
 a {
@@ -13,4 +105,101 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+h1 {
+  font-size: 200px;
+  margin: 0px;
+}
+
+h2 {
+  font-size: 50px;
+  margin: 0px;
+  text-align: center;
+}
+
+hgroup {
+  animation: animate-elements 3s linear infinite;
+  opacity: 0.2;
+}
+
+.canvas__elements {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.canvas__elements img {
+  max-height: 100vh;
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+}
+
+
+.canvas__ghosts {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  animation: animate-elements 3s linear infinite;
+  opacity: 0.2;
+}
+
+.canvas__ghosts img {
+  position: absolute;
+  width: 100px;
+  left: 10vw;
+  top: 10vw;
+}
+
+/* .canvas__elements img:first-child {
+  animation: animate-lightning 2s linear infinite;
+
+} */
+
+/* .canvas__elements img:nth-child(2) {
+  left: 25vw;
+  animation: animate-lightning 8s linear infinite 1s;
+}
+.canvas__elements img:nth-child(3) {
+  left: 50vw;
+} */
+
+.canvas__elements img:last-child {
+  left: 50vw;
+  animation: animate-lightning 3s linear infinite;
+
+}
+
+
+.canvas__btm {
+  position: absolute;
+  width: 100vw;
+  height: 100px;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  background: url('../public/assets/ground.png');
+  background-repeat: repeat-x;
+  opacity: 0.2;
+  /* filter: hue-rotate(60d8g); */
+  /* filter: hue-rotate(60d8g); */
+
+  animation: animate-elements 3s linear infinite;
 }
