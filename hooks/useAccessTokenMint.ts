@@ -10,18 +10,8 @@ async function mintAccessToken(contract: AccessToken, proof: BytesLike[]) {
   return res;
 }
 
-function getProof(address: string): BytesLike[] {
-  let proof = Merkletree[address];
-
-  console.log(proof)
-
-  return proof;
-}
-
-export default function useAccessTokenMint(address: string, contract: AccessToken) {
-  const proof = getProof(address);
-
-  const result = mintAccessToken(contract, proof);
+export default function useAccessTokenMint(contract: AccessToken, merkleProof: BytesLike[]) {
+  const result = mintAccessToken(contract, merkleProof);
 
   return result;
 }

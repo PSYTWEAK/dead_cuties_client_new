@@ -10,17 +10,22 @@ type ClaimAccessTokenProps = {
   contract: AccessToken;
 };
 
-const mint = (account: string, contract: AccessToken, merkleProof: BytesLike[] ) => {
-  useAccessTokenMint(account, contract);
+const mint = (contract: AccessToken, merkleProof: BytesLike[] ) => {
+  useAccessTokenMint( contract, merkleProof);
 }
 
 const ClaimAccessToken = ({ contract }: ClaimAccessTokenProps) => {
   const { account } = useWeb3React<Web3Provider>();
   const merkleProof = useMerkleTree(account);
-  const balance = useTokenBalance(account, contract.address);
+  const { data } = useTokenBalance(account, contract.address);
 
   if (merkleProof) {
-    return <button onClick={() => mint(account, contract, merkleProof)}><span>Claim</span></button>;
+    if (data.toString() === "0") {
+      return <button onClick={() => mint(contract, merkleProof)}><span>Claim</span></button>;
+    } else {
+      return <button><span>Claimed</span></button>;
+    }
+
   } else {
     return <p>Nothing to claim</p>
   }
