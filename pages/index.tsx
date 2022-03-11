@@ -6,11 +6,13 @@ import ETHBalance from "../components/ETHBalance";
 import TokenBalance from "../components/TokenBalance";
 import ClaimAccessToken from "../components/ClaimAccessToken";
 import useEagerConnect from "../hooks/useEagerConnect";
+import useAccessToken from "../hooks/useAccessToken";
 
-const ACCESS_TOKEN_ADDRESS = "0x6b175474e89094c44da98b954eedeac495271d0f";
+const ACCESS_TOKEN_ADDRESS = "0xc5ec6B520d589f6375dCc237965DE9E2702476F3";
 
 function Home() {
   const { account, library } = useWeb3React();
+  const contract = useAccessToken(ACCESS_TOKEN_ADDRESS);
 
   const triedToEagerConnect = useEagerConnect();
 
@@ -41,7 +43,7 @@ function Home() {
         {isConnected && (
           <section>
             <ETHBalance />
-            <ClaimAccessToken tokenAddress={ACCESS_TOKEN_ADDRESS} />
+            <ClaimAccessToken contract={contract} />
 
             <TokenBalance tokenAddress={ACCESS_TOKEN_ADDRESS} symbol="Access Token" />
           </section>

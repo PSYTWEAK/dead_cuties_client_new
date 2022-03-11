@@ -30,7 +30,7 @@ export default function useTokenBalance(
       suspense,
     }
   );
-
+    console.log(result)
   useKeepSWRDataLiveAsBlocksArrive(result.mutate);
 
   return result;

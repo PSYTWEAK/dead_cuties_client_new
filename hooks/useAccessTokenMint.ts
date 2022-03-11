@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import type { AccessToken } from "../contracts/types";
-import useKeepSWRDataLiveAsBlocksArrive from "./useKeepSWRDataLiveAsBlocksArrive";
-import useAccessToken from "./useAccessToken";
 import { BytesLike } from "ethers";
+import Merkletree from "./merkle/Merkletree.json";
+
 
 async function mintAccessToken(contract: AccessToken, proof: BytesLike[]) {
   const res = await contract.mint(proof);
@@ -11,12 +11,15 @@ async function mintAccessToken(contract: AccessToken, proof: BytesLike[]) {
 }
 
 function getProof(address: string): BytesLike[] {
-  return ["0x4r34rf43f", "0x7374hr84"];
+  let proof = Merkletree[address];
+
+  console.log(proof)
+
+  return proof;
 }
 
-export default function useAccessTokenMint(address: string, tokenAddress: string, suspense = false) {
+export default function useAccessTokenMint(address: string, contract: AccessToken) {
   const proof = getProof(address);
-  const contract = useAccessToken(tokenAddress);
 
   const result = mintAccessToken(contract, proof);
 
