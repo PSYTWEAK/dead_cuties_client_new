@@ -42,7 +42,6 @@ function Home() {
 
         {isConnected && (
           <section>
-            <ETHBalance />
             <ClaimAccessToken contract={contract} />
 
             <TokenBalance tokenAddress={ACCESS_TOKEN_ADDRESS} symbol="Access Token" />
