@@ -19,14 +19,14 @@ function Home() {
   return (
     <div>
       <Head>
-        <title>next-web3-boilerplate</title>
+        <title>The Dead Cuties</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header>
         <nav>
           <Link href="/">
-            <a>next-web3-boilerplate</a>
+            <a>TheDeadCuties</a>
           </Link>
 
           <Account triedToEagerConnect={triedToEagerConnect} />

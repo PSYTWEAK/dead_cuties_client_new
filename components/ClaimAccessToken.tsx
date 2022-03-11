@@ -9,7 +9,7 @@ type ClaimAccessTokenProps = {
 const ClaimAccessToken = ({ tokenAddress }: ClaimAccessTokenProps) => {
   const { account } = useWeb3React<Web3Provider>();
 
-  return <button>Claim</button>;
+  return <button><span>Claim</span></button>;
 };
 
 export default ClaimAccessToken;
