@@ -29,7 +29,7 @@ function Claim() {
         autoplay: true,
         animationData: twinklingData,
     };
-    const { account, library } = useWeb3React();
+    const { account, library, chainId } = useWeb3React();
 
     const triedToEagerConnect = useEagerConnect();
 
@@ -68,9 +68,9 @@ function Claim() {
                                         <TokenBalance tokenAddress={ACCESS_TOKEN_ADDRESS} symbol="Access Token" />
                                     </section>
                                 )}
-                                 {!isConnected && (
+                                 {!isConnected && chainId !== 42161 && (
                                     <section>
-                                        <p>Connect to Arbitrum</p>
+                                        <p>Use Arbitrum Network</p>
                                     </section>
                                 )}
                             </div>

@@ -13,6 +13,7 @@ const ETHERSCAN_PREFIXES = {
   4: "rinkeby.",
   5: "goerli.",
   42: "kovan.",
+  42161: "arbiscan"
 };
 
 export function formatEtherscanLink(
@@ -22,11 +23,11 @@ export function formatEtherscanLink(
   switch (type) {
     case "Account": {
       const [chainId, address] = data;
-      return `https://${ETHERSCAN_PREFIXES[chainId]}etherscan.io/address/${address}`;
+      return `https://${ETHERSCAN_PREFIXES[chainId]}.io/address/${address}`;
     }
     case "Transaction": {
       const [chainId, hash] = data;
-      return `https://${ETHERSCAN_PREFIXES[chainId]}etherscan.io/tx/${hash}`;
+      return `https://${ETHERSCAN_PREFIXES[chainId]}.io/tx/${hash}`;
     }
   }
 }
