@@ -10,7 +10,7 @@ type ClaimAccessTokenProps = {
   contract: AccessToken;
 };
 
-const mint = (contract: AccessToken, merkleProof: BytesLike[] ) => {
+const Mint = (contract: AccessToken, merkleProof: BytesLike[] ) => {
   useAccessTokenMint( contract, merkleProof);
 }
 
@@ -30,7 +30,7 @@ const ClaimAccessToken = ({ contract }: ClaimAccessTokenProps) => {
     if (balance === "1") {
        return <a></a>
     } else {
-       return <button onClick={() => mint(contract, merkleProof)}><span>Claim</span></button>; 
+       return <button onClick={() => Mint(contract, merkleProof)}><span>Claim</span></button>; 
     }
 
   } else {
