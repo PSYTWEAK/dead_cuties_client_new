@@ -68,6 +68,11 @@ function Claim() {
                                         <TokenBalance tokenAddress={ACCESS_TOKEN_ADDRESS} symbol="Access Token" />
                                     </section>
                                 )}
+                                 {!isConnected && (
+                                    <section>
+                                        <p>Connect to Arbitrum</p>
+                                    </section>
+                                )}
                             </div>
                         </div>
                         {/* 
@@ -78,6 +83,7 @@ function Claim() {
                             <img className="canvas__btm-reaper-img" src={reaperSprite1.src} />
                             <img className="canvas__btm-reaper-img" src={reaperSprite2.src} />
                         </div>
+                        
                         <img className="canvas__btm-tree" src={tree.src} />
                         <img className="canvas__btm-tree" src={tree.src} />
                     </div>
