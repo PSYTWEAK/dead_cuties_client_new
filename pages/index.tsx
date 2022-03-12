@@ -8,7 +8,7 @@ import ClaimAccessToken from "../components/ClaimAccessToken";
 import useEagerConnect from "../hooks/useEagerConnect";
 import useAccessToken from "../hooks/useAccessToken";
 
-const ACCESS_TOKEN_ADDRESS = "0xc5ec6B520d589f6375dCc237965DE9E2702476F3";
+const ACCESS_TOKEN_ADDRESS = "0x536FBCcD358B8EdA0aa905f4B93A39B46C5227d2";
 
 function Home() {
   const { account, library } = useWeb3React();

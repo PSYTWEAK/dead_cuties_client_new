@@ -390,7 +390,7 @@ hgroup {
 .claim .canvas__btm {
   position: absolute;
   width: 100vw;
-  height: 50vh;
+  height: 40vh;
   z-index: 1;
   bottom: 0;
   left: 0;
@@ -514,7 +514,7 @@ hgroup {
 }
 
 button {
-  background-color: transparent;
+  background-color: #c4c0c4;
   padding: 5px 40px;
   color: #2C2925;
   border: 6px solid #aaa3aa;

@@ -17,13 +17,20 @@ const mint = (contract: AccessToken, merkleProof: BytesLike[] ) => {
 const ClaimAccessToken = ({ contract }: ClaimAccessTokenProps) => {
   const { account } = useWeb3React<Web3Provider>();
   const merkleProof = useMerkleTree(account);
-  const { data } = useTokenBalance(account, contract.address);
+  let { data } = useTokenBalance(account, contract.address);
+
+  let balance;
+  if (data) {
+    balance = data.toString();
+  } else {
+    balance = "0"
+  }
 
   if (merkleProof) {
-    if (data.toString() === "0") {
-      return <button onClick={() => mint(contract, merkleProof)}><span>Claim</span></button>;
+    if (balance === "1") {
+       return <a></a>
     } else {
-      return <button><span>Claimed</span></button>;
+       return <button onClick={() => mint(contract, merkleProof)}><span>Claim</span></button>; 
     }
 
   } else {
