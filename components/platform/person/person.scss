@@ -1,0 +1,17 @@
+.person {
+    $x-pos: 77px;
+    $y-pos: 128px;
+
+    &__asset {
+        width: $x-pos;
+        height: $y-pos;
+        background-size: 153px;
+        background-position-x: -$x-pos;
+        background-position-y: -$y-pos;
+        background-repeat: no-repeat;
+
+        @include animate-step;
+    }
+
+    @include animate-walking;
+}

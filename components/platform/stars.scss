@@ -1,0 +1,11 @@
+.stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+
+    z-index: -1;
+    pointer-events: none;
+}

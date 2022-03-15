@@ -1,0 +1,57 @@
+$x-pos: 77px;
+$y-pos: 128px;
+
+@keyframes step {
+    0% {
+        // background-position-x: -$x-pos;
+        background-position-x: -$x-pos;
+        transform: translateY(0px);
+    }
+
+    100% {
+        // background-position-x: 0px;
+        background-position-x: $x-pos;
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes walking {
+    0% {
+        transform: translateX(calc(80vw - $x-pos));
+    }
+
+    99.9% {
+        transform: translateX(0vw) scaleX(1);
+    }
+    100% {
+        transform: translateX(0vw) scaleX(-1);
+    }
+}
+@keyframes walking-reverse {
+    0% {
+        transform: translateX(80vw);
+    }
+
+    99.9% {
+        transform: translateX(0vw) scaleX(1);
+    }
+    100% {
+        transform: translateX(0vw) scaleX(-1);
+    }
+}
+
+
+@mixin animate-step {
+    animation-name: step;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(2);
+    animation-iteration-count: infinite;
+}
+
+@mixin animate-walking {
+    animation-name: walking;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    // animation-direction: alternate-reverse;
+}
