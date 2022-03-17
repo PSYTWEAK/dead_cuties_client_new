@@ -12,11 +12,15 @@ const TokenBalance = ({ tokenAddress, symbol }: TokenBalanceProps) => {
   const { account } = useWeb3React<Web3Provider>();
   const { data } = useTokenBalance(account, tokenAddress);
 
-  return (
-    <p>
-      {`${symbol} Balance`}: {parseBalance(data ?? 0)}
-    </p>
-  );
+  if (data && data.toString() === "1") {
+    return (
+      <p>
+       Access Token Claimed
+      </p>
+    );
+  } else {
+    return <p></p>
+  }
 };
 
 export default TokenBalance;

@@ -60,7 +60,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
             }}
           >
             <span>
-              {isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
+              {isMetaMaskInstalled ? "Connect" : "Connect"}
             </span>
           </button>
         ) : (

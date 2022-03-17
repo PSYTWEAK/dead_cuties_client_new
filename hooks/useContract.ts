@@ -7,7 +7,6 @@ export default function useContract<T extends Contract = Contract>(
   ABI: any
 ): T | null {
   const { library, account, chainId } = useWeb3React();
-
   return useMemo(() => {
     if (!address || !ABI || !library || !chainId) {
       return null;

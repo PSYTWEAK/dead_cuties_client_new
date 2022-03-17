@@ -16,17 +16,20 @@ import grave from '../public/assets/grave.png';
 import ghost3 from '../public/assets/ghost_3.png';
 import ghost4 from '../public/assets/ghost_4.png';
 import tree from '../public/assets/tree.png';
+import useAccessToken from "../hooks/useAccessToken";
 
-const ACCESS_TOKEN_ADDRESS = "0x6b175474e89094c44da98b954eedeac495271d0f";
+const ACCESS_TOKEN_ADDRESS = "0x536FBCcD358B8EdA0aa905f4B93A39B46C5227d2";
 
 function Claim() {
+
+    const contract = useAccessToken(ACCESS_TOKEN_ADDRESS);
 
     const twinkling = {
         loop: true,
         autoplay: true,
         animationData: twinklingData,
     };
-    const { account, library } = useWeb3React();
+    const { account, library, chainId } = useWeb3React();
 
     const triedToEagerConnect = useEagerConnect();
 
@@ -39,17 +42,18 @@ function Claim() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
+
             <header>
-                <nav>
-                    <Link href="/">
-                        <a>The Dead Cuties</a>
-                    </Link>
-                </nav>
-            </header>
+        <nav>
+          <Link href="/">
+            <a>TheDeadCuties</a>
+          </Link>
+        </nav>
+      </header>
 
             <main className="claim">
-                <section className="canvas">
 
+                <section className="canvas">
                     <div className="canvas__elements">
                         <img src={lightning4.src} />
                     </div>
@@ -57,12 +61,16 @@ function Claim() {
                         <div className="canvas__btm-grave">
                             <img src={grave.src} className="canvas__btm-grave-img" />
                             <div className="canvas__btm-grave-text">
-                                <Account triedToEagerConnect={triedToEagerConnect} />
+                            <Account triedToEagerConnect={triedToEagerConnect} />
                                 {isConnected && (
                                     <section>
-                                        <ETHBalance />
-                                        <ClaimAccessToken tokenAddress={ACCESS_TOKEN_ADDRESS} />
+                                        <ClaimAccessToken contract={contract} />
                                         <TokenBalance tokenAddress={ACCESS_TOKEN_ADDRESS} symbol="Access Token" />
+                                    </section>
+                                )}
+                                 {!isConnected && chainId !== 42161 && (
+                                    <section>
+                                        <p>Use Arbitrum Network</p>
                                     </section>
                                 )}
                             </div>
@@ -75,6 +83,7 @@ function Claim() {
                             <img className="canvas__btm-reaper-img" src={reaperSprite1.src} />
                             <img className="canvas__btm-reaper-img" src={reaperSprite2.src} />
                         </div>
+                        
                         <img className="canvas__btm-tree" src={tree.src} />
                         <img className="canvas__btm-tree" src={tree.src} />
                     </div>

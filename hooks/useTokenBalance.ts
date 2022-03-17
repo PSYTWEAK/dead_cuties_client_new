@@ -30,7 +30,6 @@ export default function useTokenBalance(
       suspense,
     }
   );
-
   useKeepSWRDataLiveAsBlocksArrive(result.mutate);
 
   return result;
