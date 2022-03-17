@@ -1,0 +1,46 @@
+.footer {
+    padding: 5px 20px;
+    border-top: 1px solid rgba(80, 80, 80, 0.7);
+    background-color:rgba(80, 80, 80, 0.3);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(10px) saturate(120%);
+    @supports not (backdrop-filter: blur(10px) saturate(120%)) {
+        border-top: 1px solid rgba(80, 80, 80, 0.8);
+        background-color:rgba(80, 80, 80, 0.5);
+    }
+
+    dl {
+        display: flex;
+        font-size: 15px;
+        margin: 0px;
+        letter-spacing: 0.5px;
+        @include pixel-font;
+    }
+
+    a {
+        font-size: inherit;
+        padding: 5px;
+        display: block;
+    }
+
+    dt {
+        margin-left: 40px;
+
+        &:first-child {
+            margin-left: 0px;
+        }
+    }
+
+    dd {
+        margin-inline-start: 0px;
+        margin-left: 20px;
+    }
+
+    dt, dd {
+        display: flex;
+        align-items: center;
+    }
+}

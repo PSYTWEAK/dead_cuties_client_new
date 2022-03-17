@@ -5,7 +5,9 @@
 @import '../pages/mint.scss';
 
 
-input:focus, textarea:focus, select:focus{
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
@@ -17,17 +19,17 @@ img {
 
 input[type="number"] {
   -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-header {
-  position: absolute;
-  top: 0;
+.hidden {
+  display: none;
 }
 
 @keyframes animate-lightning {
@@ -67,10 +69,6 @@ header {
     opacity: 0;
     transform: translateX(0) scaleX(1, 0.8);
   }
-}
-
-header {
-  padding: 10px 40px;
 }
 
 @keyframes animate-elements {
@@ -219,7 +217,7 @@ header {
 }
 
 /* @keyframes show-and-hide {
-  0% {
+  0% 
     opacity: 1;
   }
 
@@ -242,21 +240,38 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-image: linear-gradient(to bottom, rgb(16, 17, 26), rgb(25, 26, 49));
-  height: 100vh;
-  overflow: hidden;
-  position: fixed;
-  width: 100vw;
-
+  background-image: linear-gradient(to bottom, rgb(16, 17, 26), rgb(25, 26, 49) 20%);
+  background-repeat: no-repeat;
+  min-height: 100%;
   @include standard-font;
 }
 
 a,
 button {
+  position: relative;
   color: inherit;
   text-decoration: none;
-  font-family: 'Jolly Lodger', cursive;
   font-size: 40px;
+  @include pixel-font;
+  transform: scale(1);
+  transition: transform 0.25s ease-in,
+    color 0.25s ease-in;
+
+    img {
+      pointer-events: none;
+    }
+
+  &:hover {
+    transform: scale(1.02);
+    color: #fff;
+  }
+
+
+  &,
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
 }
 
 * {
@@ -270,6 +285,12 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 40px;
+}
+
+.mint-main {
+  height: unset;
+  display: block;
 }
 
 h1 {
@@ -315,7 +336,7 @@ hgroup {
 }
 
 .claim .canvas__elements img {
-// .canvas__elements img {
+  // .canvas__elements img {
   max-height: 55vh;
   position: absolute;
   z-index: 0;
@@ -543,6 +564,12 @@ hgroup {
 }
 
 button {
+  border-width: 0px;
+  background-color: transparent;
+  padding: 5px 40px;
+}
+
+.canvas__btm button {
   background-color: transparent;
   padding: 5px 40px;
   color: #2C2925;
@@ -566,7 +593,7 @@ button span {
 }
 
 
-button:hover {
+.canvas__btm button:hover {
   border-color: #5A585A;
   box-shadow: 4px 4px 0 4px #aaa3aa;
   cursor: pointer;

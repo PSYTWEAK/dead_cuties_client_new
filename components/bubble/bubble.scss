@@ -3,7 +3,7 @@
     @include pixel-font;
     left: 50vw;
     max-width: 45vw;
-    font-size: 30px;
+    font-size: 20px;
     z-index: 10;
     top: 10vh;
     padding: 20px;
@@ -11,7 +11,7 @@
     @include pixel-border;
 
     &__form {
-        font-size: 30px;
+        font-size: 20px;
         display: flex;
         justify-content: flex-end;
         margin-top: 50px;
@@ -78,7 +78,7 @@
         height: 26px;
         width: 50px;
         border-image-width: 0px;
-        background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+        background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(150, 150, 150)" /></svg>');
         background-repeat: no-repeat;
         background-size: cover;
 

@@ -1,23 +1,36 @@
 .mint {
     height: 100vh;
-    width: 100vw;
 
     .reaper {
         position: absolute;
         left: 0;
+        z-index: 20;
         bottom: 0%;
         height: 60vh;
 
         img {
             height: 100%;
-
         }
     }
 
+    &-main {
+        padding: 50px 0px;
+    }
+
+    .canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100vw;
+        height: calc(100vh + 50px);
+        overflow: hidden;
+    }
     .canvas__elements {
         height: 50vh;
         width: 80vw;
-        bottom: 50vh;
+        top: 0;
+        margin-top: 0px;
 
         img {
             height: 100%;
@@ -27,25 +40,27 @@
     .canvas__btm {
         position: absolute;
         width: 100vw;
+        // overflow-x: hidden;
         height: 50vh;
         z-index: 0;
         bottom: 0;
         left: 0;
         background: url('../public/assets/ground.png');
-        background-repeat: repeat;
+        background-repeat: repeat-x;
         opacity: 0.5;
         animation: animate-elements 3s linear infinite alternate;
 
         &:after {
             position: inherit;
             z-index: -10;
+            transform: scaleY(-1);
             content: '';
             display: block;
             width: 100%;
             height: 100%;
-            top: 20px;
+            top: -10px;
             background-image: url('../public/assets/ground.png');
-            background-repeat: repeat;
+            background-repeat: repeat-x;
             background-position: cover;
         }
 
@@ -53,7 +68,7 @@
             display: block;
             background-image: url('../public/assets/tree.png');
             background-size: contain;
-            top: -650px;
+            top: -700px;
             left: 0;
             position: inherit;
             transform-origin: bottom left;
@@ -62,13 +77,14 @@
         }
 
         &-trees:first-child {
-            filter: hue-rotate(30deg);
+            filter: url(#blue-wash);
             transform: scale(0.8);
         }
 
         &-trees:nth-child(2) {
-            filter: hue-rotate(30deg);
-            background-position-x: 140%;
+            filter: url(#blue-wash);
+            // filter: hue-rotate(50deg);
+            background-position-x: 450px;
             transform: scale(0.8);
         }
 
@@ -89,7 +105,7 @@
             display: block;
             background-image: url('../public/assets/grave.png');
             background-size: contain;
-            bottom: 20vh;
+            bottom: calc(20vh + 50px);
             left: 0;
             position: inherit;
             transform-origin: bottom left;
@@ -98,7 +114,7 @@
         }
 
         &-graves:last-child {
-            bottom: 5vh;
+            bottom: calc(5vh + 50px);
             background-position-x: 2%;
         }
     }
