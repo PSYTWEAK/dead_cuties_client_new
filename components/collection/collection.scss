@@ -60,18 +60,18 @@
 
     &__grid-item img {
         transform: translateY(0vh);
-        // @include animate-hovering(7);
+        @include animate-hovering(7);
     }
 
     &__grid-item:nth-child(2n) img {
-        // @include animate-hovering(10.5);
+        @include animate-hovering(10.5);
     }
 
     &__grid-item:nth-child(3n) img {
-        // @include animate-hovering(12);
+        @include animate-hovering(12);
     }
 
     &__grid-item:nth-child(3n+1) img {
-        // @include animate-hovering(8.75);
+        @include animate-hovering(8.75);
     }
 }
