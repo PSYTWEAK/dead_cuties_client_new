@@ -48,7 +48,7 @@ function Collection({ baseURI, arrayOfNFTIDs }) {
             if (link) {
               return (
                 <div key={link} className="collection__grid-item">
-                  <Image alt={"image"} src={link} width={512} height={512} quality={80} />
+                  <Image alt={"image"} src={link} layout="responsive" width="200" height="200" quality={80} />
                   <button onClick={() => console.log(i)}>Reroll</button>
                 </div>
               );

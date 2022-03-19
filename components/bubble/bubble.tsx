@@ -11,18 +11,23 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   const { account } = useWeb3React();
 
   const [inputValue, setInputValue] = useState("1");
-  let [mintStep, setMintStep] = useState(2);
+  let [mintStep, setMintStep] = useState(0);
+  // const []
   let [priceOfMint, setPriceOfMint] = useState(0.03);
 
-  const data = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
+  const { data } = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
 
   let balance;
 
   useEffect(() => {
     if (data) {
+      console.log('>>>> data');
+      console.log(data);
       balance = data.toString();
-      if (balance !== "0" && mintStep < 2) {
-        setMintStep(1);
+      console.log('> mintStep');
+      console.log(mintStep);
+      if (balance !== "0" && mintStep === 0) {
+        setMintStep(mintStep + 1);
       }
     } else {
       balance = "0";
@@ -51,7 +56,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
     return price;
   };
 
-  const changeMintStep = async function () {
+  const changeMintStep = async function (currentStep) {
     try {
       if (mintStep === 1) {
         // mintStep === 1 shows "Pay with access token" button and starts timer
@@ -62,7 +67,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
         // mintStep === 2 shows amount and reap souls button so you can put in here minting function
         await useDeadCutiesMint(deadCutiesContract, Number(inputValue), priceOfMint);
       }
-      setMintStep(mintStep + 1);
+      currentStep < 3 ? setMintStep(mintStep + 1) : setMintStep(mintStep);
     } catch (err) {
       console.log(err);
     }
@@ -88,27 +93,47 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
       <div className="bubble__text">
         {mintStep === 0 && (
           <>
-            <p>Your time isn't here yet</p>
-            <p>...your wallet needs an access token to continue</p>
+            <p>So little wandering souls...
+              <br />
+              ...so many people who want them.
+            </p>
+            <p>
+              Unless you obtained access tokens I can't get them for you.
+              <br />
+              Come back when you get it.
+            </p>
           </>
         )}
         {mintStep === 1 && (
           <>
-            <p>Their time has come. They are wandering the Ether now. I can get these lost souls for you...</p>
+            <p>Their time has come. They are wandering the Ether now. I can get these lost cuties for you...</p>
             <p>
               ...as I have no use for them.
               <br />
               They are troubled by their death and aren't ready to move on beyond.
             </p>
-            <p>For a fee, I will bind them to you until you are ready to release them.</p>
+            <p>For a fee, I will bind these dead cuties to you until you are ready to release them.</p>
           </>
         )}
         {mintStep === 2 && (
           <>
-            <p>You just got your free DeadCutie...</p>
+            <p>I have bound one to you for free...</p>
 
-            <p>You only have a limited amount of time to mint more</p>
+            <p>A lot of people want these cuties for themselves,
+              so I will give you 10 minutes of your time to mint as many as you like.</p>
             <p>...How many more DeadCuties shall I bind to you?</p>
+          </>
+        )}
+        {mintStep === 3 && (
+          <>
+            <p>Your Dead Cuties should be visible below...
+              <br />
+              If you don't vibe with some of them, you can click Reroll
+              and I will get you another for half the price
+            </p>
+
+            <p>... Scroll down, they would love to see you.</p>
+            <p> Do you want to me to bind more cuties to you? </p>
           </>
         )}
       </div>
@@ -124,7 +149,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
             </button>
           </>
         )}
-        {mintStep === 2 && (
+        {mintStep >= 2 && (
           <>
             <span className="bubble__form-input">
               <input ref={inputRef} type="number" min="1" onKeyPress={(e) => validation(e)} onChange={(e) => checkingInput(e)} value={inputValue} />
@@ -133,7 +158,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
                 <button {...(inputValue === "1" ? { disabled: true } : {})} onClick={() => stepTrigger("down")}></button>
               </span>
             </span>
-            <button onClick={() => changeMintStep()}>reap cuties for the price of {priceOfMint} ETH</button>
+            <button onClick={() => changeMintStep(mintStep)}>reap cuties for the price of {priceOfMint} ETH</button>
           </>
         )}
       </div>

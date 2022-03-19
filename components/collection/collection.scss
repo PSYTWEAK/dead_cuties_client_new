@@ -23,13 +23,14 @@
     }
 
     &__grid-item {
-        display: flex;
-        flex-direction: column;
+        // display: flex;
+        // flex-direction: column;
 
 
         button {
             @include pixel-border;
             border-image-outset: 11px;
+            margin: 20px auto 0px;
             color: inherit;
             font-size: 20px;
             padding: 20px 5px;
@@ -46,20 +47,20 @@
         }
     }
 
-    &__grid img {
-        height: calc(100% - 63px);
-        display: flex;
-        align-self: center;
-        will-change: transform;
-    }
+    // &__grid img {
+    //     height: calc(100% - 63px);
+    //     display: flex;
+    //     align-self: center;
+    //     will-change: transform;
+    // }
 
     &__grid-item {
-        height: 25vw;
-        min-width: 250px;
+        height: 30vw;
+        min-width: 300px;
         margin: 20px 10px;
     }
 
-    &__grid-item img {
+/*     &__grid-item img {
         transform: translateY(0vh);
         @include animate-hovering(7);
     }
@@ -74,5 +75,5 @@
 
     &__grid-item:nth-child(3n+1) img {
         @include animate-hovering(8.75);
-    }
+    } */
 }
