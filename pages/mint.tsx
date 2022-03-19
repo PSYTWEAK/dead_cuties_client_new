@@ -20,14 +20,14 @@ import Bubble from "../components/bubble/bubble";
 import Collection from "../components/collection/collection";
 import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useDeadCuties from "../hooks/useDeadCuties";
 import useAccessToken from "../hooks/useAccessToken";
 import useTokenBalance from "../hooks/useTokenBalance";
 import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
 const ACCESS_TOKEN_ADDRESS = "0xbd0591972ABe6c8f9e9f263a705a7Fd143036b1E";
-const DEAD_CUTIES_ADDRESS = "0xb18d312584aCD645A0c8Bce1Cc8DD1b0aF074031";
+const DEAD_CUTIES_ADDRESS = "0xc626dcedFd95161541892942D7705E4821d44D3F";
 const BASE_URI = "ipfs://bafybeihddbznstiikpjjnmawqw4ldlmoijtu6uvedzvrpwjwel25jtqnza/";
 
 function Claim() {
@@ -55,6 +55,12 @@ function Claim() {
     }
   };
 
+  /*   useEffect(() => {
+    if (account) {
+      getArrayOfNFTIDs();
+    }
+  }),
+    [account]; */
   return (
     <div>
       <svg className="hidden" xmlns="http://www.w3.org/2000/svg">
