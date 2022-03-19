@@ -26,8 +26,8 @@ import useAccessToken from "../hooks/useAccessToken";
 import useTokenBalance from "../hooks/useTokenBalance";
 import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
-const ACCESS_TOKEN_ADDRESS = "0xbd0591972ABe6c8f9e9f263a705a7Fd143036b1E";
-const DEAD_CUTIES_ADDRESS = "0xc626dcedFd95161541892942D7705E4821d44D3F";
+const ACCESS_TOKEN_ADDRESS = "0xC2b7167A1D24DC26D9d126bdE315ed0db705dD41";
+const DEAD_CUTIES_ADDRESS = "0x396aED0a6075b7dC01e9f1795E77E5Dc3987C303";
 const BASE_URI = "bafybeihddbznstiikpjjnmawqw4ldlmoijtu6uvedzvrpwjwel25jtqnza";
 
 function Claim() {
@@ -114,7 +114,7 @@ function Claim() {
           </div>
         </section>
         <section>
-          <Collection baseURI={BASE_URI} arrayOfNFTIDs={arrayOfNFTIDs} />
+          <Collection baseURI={BASE_URI} deadCutiesContract={deadCutiesContract} />
         </section>
       </main>
       <Footer />

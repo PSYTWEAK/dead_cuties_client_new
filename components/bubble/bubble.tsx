@@ -11,7 +11,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   const { account } = useWeb3React();
 
   const [inputValue, setInputValue] = useState("1");
-  let [mintStep, setMintStep] = useState(0);
+  let [mintStep, setMintStep] = useState(1);
   // const []
   let [priceOfMint, setPriceOfMint] = useState(0.03);
 
@@ -21,10 +21,10 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
 
   useEffect(() => {
     if (data) {
-      console.log('>>>> data');
+      console.log(">>>> data");
       console.log(data);
       balance = data.toString();
-      console.log('> mintStep');
+      console.log("> mintStep");
       console.log(mintStep);
       if (balance !== "0" && mintStep === 0) {
         setMintStep(mintStep + 1);
@@ -93,7 +93,8 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
       <div className="bubble__text">
         {mintStep === 0 && (
           <>
-            <p>So little wandering souls...
+            <p>
+              So little wandering souls...
               <br />
               ...so many people who want them.
             </p>
@@ -119,17 +120,16 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
           <>
             <p>I have bound one to you for free...</p>
 
-            <p>A lot of people want these cuties for themselves,
-              so I will give you 10 minutes of your time to mint as many as you like.</p>
+            <p>A lot of people want these cuties for themselves, so I will give you 10 minutes of your time to mint as many as you like.</p>
             <p>...How many more DeadCuties shall I bind to you?</p>
           </>
         )}
         {mintStep === 3 && (
           <>
-            <p>Your Dead Cuties should be visible below...
+            <p>
+              Your Dead Cuties should be visible below...
               <br />
-              If you don't vibe with some of them, you can click Reroll
-              and I will get you another for half the price
+              If you don't vibe with some of them, you can click Reroll and I will get you another for half the price
             </p>
 
             <p>... Scroll down, they would love to see you.</p>

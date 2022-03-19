@@ -1,25 +1,34 @@
 import NFTImages from "../../data/nft-collection";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import LazyLoad from "react-lazyload";
-import { Tween, Timeline } from "react-gsap";
-import { loadStaticPaths } from "next/dist/server/dev/static-paths-worker";
+import useDeadCutiesReRoll from "../../hooks/useDeadCutiesReRoll";
+import useDeadCutiesGetWalletIds from "../../hooks/useDeadCutiesGetWalletIds";
+import { useWeb3React } from "@web3-react/core";
 
-function Collection({ baseURI, arrayOfNFTIDs }) {
+function Collection({ baseURI, deadCutiesContract }) {
   const [links, setLinks] = useState([]);
-  const ids = [0, 1, 2, 3, 4];
-
-  useEffect(() => {
-    getLinks();
-  }, []);
+  const [arrayOfNFTIDs, setArrayOfNFTIDs] = useState([]);
+  const { account } = useWeb3React();
 
   const getLinks = async () => {
-    let _links = [];
-    for (let i = 0; i < ids.length; i++) {
-      _links.push(await getImageLink(`https://ipfs.io/ipfs/${baseURI}/${ids[i]}`));
-    }
+    console.log(account);
+    console.log(deadCutiesContract);
+    if (account) {
+      try {
+        let _arrayOfNFTIDs = await useDeadCutiesGetWalletIds(deadCutiesContract, account);
+        let _links = [];
 
-    setLinks(_links);
+        console.log(arrayOfNFTIDs.length, " length");
+        console.log(arrayOfNFTIDs);
+        for (let i = 0; i < arrayOfNFTIDs.length; i++) {
+          _links.push(await getImageLink(`https://ipfs.io/ipfs/${baseURI}/${arrayOfNFTIDs[i]}`));
+        }
+        setLinks(_links);
+        setArrayOfNFTIDs(_arrayOfNFTIDs);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   const getImageLink = async (metaDataLink) => {
@@ -28,7 +37,6 @@ function Collection({ baseURI, arrayOfNFTIDs }) {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(`https://ipfs.io/${result.image.substring(7)}/`);
           imageLink = `https://ipfs.io/ipfs/${result.image.substring(7)}/`;
         },
         (error) => {
@@ -39,23 +47,26 @@ function Collection({ baseURI, arrayOfNFTIDs }) {
     return imageLink;
   };
 
+  useEffect(() => {
+    getLinks();
+  }, []);
+
   return (
     <div className="collection">
       <div className="collection__top"></div>
       <div className="collection__grid">
-        {links &&
-          links.map((link, i) => {
-            if (link) {
-              return (
-                <div key={link} className="collection__grid-item">
-                  <Image alt={"image"} src={link} layout="responsive" width="200" height="200" quality={80} />
-                  <button onClick={() => console.log(i)}>Reroll</button>
-                </div>
-              );
-            } else {
-              return <a></a>;
-            }
-          })}
+        {links.map((link, i) => {
+          if (link) {
+            return (
+              <div key={link} className="collection__grid-item">
+                <Image alt={"image"} src={link} layout="responsive" width="200" height="200" quality={80} />
+                <button onClick={() => useDeadCutiesReRoll(deadCutiesContract, arrayOfNFTIDs[i])}>Reroll (0.015 ETH)</button>
+              </div>
+            );
+          } else {
+            return <a></a>;
+          }
+        })}
       </div>
     </div>
   );
