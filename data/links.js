@@ -9,7 +9,7 @@ const Links = {
       icon: "/assets/icons/discord-icon.png",
     },
   ],
-  contract: "TEST CONTRACT",
+  contract: "0xc5ec6B520d589f6375dCc237965DE9E2702476F3",
 };
 
 export default Links;
