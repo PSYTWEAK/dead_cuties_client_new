@@ -5,7 +5,6 @@ import { useWeb3React } from "@web3-react/core";
 import useTokenBalance from "../../hooks/useTokenBalance";
 import useDeadCutiesDepositAccessToken from "../../hooks/useDeadCutiesDepositAccessToken";
 import useDeadCutiesMint from "../../hooks/useDeadCutiesMint";
-import Account from "../components/Account";
 
 function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   const inputRef = useRef(null);

@@ -23,12 +23,16 @@ import Footer from "../components/footer/footer";
 import { useState } from "react";
 import useDeadCuties from "../hooks/useDeadCuties";
 import useAccessToken from "../hooks/useAccessToken";
+import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
 const ACCESS_TOKEN_ADDRESS = "0xc5ec6B520d589f6375dCc237965DE9E2702476F3";
 const DEAD_CUTIES_ADDRESS = "0xb18d312584aCD645A0c8Bce1Cc8DD1b0aF074031";
+const BASE_URI = "ipfs://bafybeihddbznstiikpjjnmawqw4ldlmoijtu6uvedzvrpwjwel25jtqnza/";
 
 function Claim() {
   const [startTimer, setStartTimer] = useState(false);
+
+  const [arrayOfNFTIDs, setArrayOfNFTIDs] = useState([]);
 
   const deadCutiesContract = useDeadCuties(DEAD_CUTIES_ADDRESS);
   const accessTokenContract = useAccessToken(ACCESS_TOKEN_ADDRESS);
@@ -43,6 +47,16 @@ function Claim() {
   const triedToEagerConnect = useEagerConnect();
   const isConnected = typeof account === "string" && !!library;
 
+  const getArrayOfNFTIDs = async () => {
+    let _arrayOfNFTIDs = await useDeadCutiesGetWalletIds(deadCutiesContract, account);
+    if (_arrayOfNFTIDs) {
+      setArrayOfNFTIDs(_arrayOfNFTIDs);
+    }
+  };
+
+  if (account) {
+    getArrayOfNFTIDs();
+  }
   return (
     <div>
       <svg className="hidden" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +75,6 @@ function Claim() {
       <Head>
         <title>The Dead Cuties</title>
         <link rel="icon" href="/favicon.ico" />
-        <Account triedToEagerConnect={triedToEagerConnect} />
       </Head>
 
       <Header startTimer={startTimer} />
@@ -95,7 +108,7 @@ function Claim() {
           </div>
         </section>
         <section>
-          <Collection />
+          <Collection baseURI={BASE_URI} arrayOfNFTIDs={arrayOfNFTIDs} />
         </section>
       </main>
       <Footer />
