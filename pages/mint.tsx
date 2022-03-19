@@ -26,7 +26,7 @@ import useAccessToken from "../hooks/useAccessToken";
 import useTokenBalance from "../hooks/useTokenBalance";
 import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
-const ACCESS_TOKEN_ADDRESS = "0xc5ec6B520d589f6375dCc237965DE9E2702476F3";
+const ACCESS_TOKEN_ADDRESS = "0xbd0591972ABe6c8f9e9f263a705a7Fd143036b1E";
 const DEAD_CUTIES_ADDRESS = "0xb18d312584aCD645A0c8Bce1Cc8DD1b0aF074031";
 const BASE_URI = "ipfs://bafybeihddbznstiikpjjnmawqw4ldlmoijtu6uvedzvrpwjwel25jtqnza/";
 
