@@ -7,7 +7,7 @@ import { useWeb3React } from "@web3-react/core";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-function Collection({ baseURI, deadCutiesContract, numOfStateChanges, setNumOfStateChange }) {
+function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges, setNumOfStateChange }) {
   const [links, setLinks] = useState([]);
   const [arrayOfNFTIDs, setArrayOfNFTIDs] = useState([]);
   const { account } = useWeb3React();
@@ -73,15 +73,17 @@ function Collection({ baseURI, deadCutiesContract, numOfStateChanges, setNumOfSt
         {links.map((link, i) => {
           if (link) {
             return (
-              <div key={link} className="collection__grid-item">
+              <div key={i} className="collection__grid-item">
                 <Image alt={"image"} src={link} layout="responsive" width="200" height="200" quality={80} />
-                <button
-                  onClick={() => {
-                    reRoll(deadCutiesContract, arrayOfNFTIDs[i]);
-                  }}
-                >
-                  Reroll (0.015 ETH)
-                </button>
+                {startTimer !== null &&
+                  <button
+                    onClick={() => {
+                      reRoll(deadCutiesContract, arrayOfNFTIDs[i]);
+                    }}
+                  >
+                    Reroll (0.015 ETH)
+                  </button>
+                }
               </div>
             );
           } else {

@@ -83,7 +83,7 @@ function Claim() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header startTimer={startTimer} triedToEagerConnect={triedToEagerConnect} />
+      <Header startTimer={startTimer} setStartTimer={setStartTimer} triedToEagerConnect={triedToEagerConnect} />
       <main className="mint-main">
         {" "}
         <section className="mint">
@@ -106,7 +106,7 @@ function Claim() {
           {/* <div className="stars">
                         <Lottie options={twinkling} />
                     </div> */}{" "}
-          <Bubble setStartTimer={setStartTimer} deadCutiesContract={deadCutiesContract} accessTokenContract={accessTokenContract} setNumOfStateChange={setNumOfStateChange} />
+          <Bubble setStartTimer={setStartTimer} startTimer={startTimer} deadCutiesContract={deadCutiesContract} accessTokenContract={accessTokenContract} setNumOfStateChange={setNumOfStateChange} />
           {/* <div className="platform">
                         <Person position={"top"} direction={"to-left"} />
                         <Person position={"bottom"} direction={"to-right"} />
@@ -116,7 +116,7 @@ function Claim() {
           </div>
         </section>
         <section>
-          <Collection baseURI={BASE_URI} deadCutiesContract={deadCutiesContract} numOfStateChanges={numOfStateChanges} setNumOfStateChange={setNumOfStateChange} />
+          <Collection startTimer={startTimer} baseURI={BASE_URI} deadCutiesContract={deadCutiesContract} numOfStateChanges={numOfStateChanges} setNumOfStateChange={setNumOfStateChange} />
         </section>
       </main>
       <Footer />

@@ -6,12 +6,12 @@ import useTokenBalance from "../../hooks/useTokenBalance";
 import useDeadCutiesDepositAccessToken from "../../hooks/useDeadCutiesDepositAccessToken";
 import useDeadCutiesMint from "../../hooks/useDeadCutiesMint";
 
-function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract, setNumOfStateChange }) {
+function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenContract, setNumOfStateChange }) {
   const inputRef = useRef(null);
   const { account } = useWeb3React();
 
   const [inputValue, setInputValue] = useState("1");
-  let [mintStep, setMintStep] = useState(1);
+  let [mintStep, setMintStep] = useState(0);
   let [priceOfMint, setPriceOfMint] = useState(0.03);
 
   const { data } = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
@@ -161,14 +161,21 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract, setNum
         )}
         {mintStep >= 2 && (
           <>
-            <span className="bubble__form-input">
-              <input ref={inputRef} type="number" min="1" onKeyPress={(e) => validation(e)} onChange={(e) => checkingInput(e)} value={inputValue} />
-              <span className="bubble__form-input-steps">
-                <button onClick={() => stepTrigger("up")}></button>
-                <button {...(inputValue === "1" ? { disabled: true } : {})} onClick={() => stepTrigger("down")}></button>
+            {startTimer !== null &&
+              <span className="bubble__form-input">
+                <input ref={inputRef} type="number" min="1" onKeyPress={(e) => validation(e)} onChange={(e) => checkingInput(e)} value={inputValue} />
+                <span className="bubble__form-input-steps">
+                  <button onClick={() => stepTrigger("up")}></button>
+                  <button {...(inputValue === "1" ? { disabled: true } : {})} onClick={() => stepTrigger("down")}></button>
+                </span>
               </span>
-            </span>
-            <button onClick={() => changeMintStep(mintStep)}>Bind cuties to you for the price of {priceOfMint} ETH</button>
+            }
+            <button onClick={() => changeMintStep(mintStep)}>
+              {(startTimer !== null)
+                ? "Bind cuties to you for the price of {priceOfMint} ETH"
+                : "Time for minting has passed"
+              }
+            </button>
           </>
         )}
       </div>

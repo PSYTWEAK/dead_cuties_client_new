@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Account from '../Account';
 
-function Header({ startTimer, triedToEagerConnect }) {
+function Header({ startTimer, setStartTimer, triedToEagerConnect }) {
     const [counter, setCounter] = useState(600);
     let minutes = (Math.floor((counter % 3600) / 60));
     let seconds = (counter % 60);
@@ -31,6 +31,7 @@ function Header({ startTimer, triedToEagerConnect }) {
                 }, 1000);
             } else {
                 setTimeLeft('Out of time.');
+                setStartTimer(null);
             }
         }
 
