@@ -11,21 +11,24 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   const { account } = useWeb3React();
 
   const [inputValue, setInputValue] = useState("1");
-  let [mintStep, setMintStep] = useState(2);
+  let [mintStep, setMintStep] = useState(0);
   let [priceOfMint, setPriceOfMint] = useState(0);
 
   let { data } = useTokenBalance(account, "0xc5ec6B520d589f6375dCc237965DE9E2702476F3");
 
   let balance;
 
-  if (data) {
-    balance = data.toString();
-    if (balance === "1") {
-      setMintStep(1);
+  useEffect(() => {
+    if (data) {
+      balance = data.toString();
+      if (balance === "1") {
+        setMintStep(1);
+      }
+    } else {
+      balance = "0";
     }
-  } else {
-    balance = "0";
-  }
+  }),
+    [data];
 
   const stepTrigger = function (pos) {
     if (inputRef.current) {

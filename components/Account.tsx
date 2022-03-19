@@ -11,15 +11,8 @@ type AccountProps = {
 };
 
 const Account = ({ triedToEagerConnect }: AccountProps) => {
-  const { active, error, activate, chainId, account, setError } =
-    useWeb3React();
-
-  const {
-    isMetaMaskInstalled,
-    isWeb3Available,
-    startOnboarding,
-    stopOnboarding,
-  } = useMetaMaskOnboarding();
+  const { active, error, activate, chainId, account, setError } = useWeb3React();
+  const { isMetaMaskInstalled, isWeb3Available, startOnboarding, stopOnboarding } = useMetaMaskOnboarding();
 
   // manage connecting state for injected connector
   const [connecting, setConnecting] = useState(false);
@@ -44,7 +37,8 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
     return (
       <div>
         {isWeb3Available ? (
-          <button className="connect-wallet"
+          <button
+            className="connect-wallet"
             disabled={connecting}
             onClick={() => {
               setConnecting(true);
@@ -59,12 +53,12 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
               });
             }}
           >
-            <span>
-              {isMetaMaskInstalled ? "Connect" : "Connect"}
-            </span>
+            <span>{isMetaMaskInstalled ? "Connect" : "Connect"}</span>
           </button>
         ) : (
-          <button className="connect-wallet" onClick={startOnboarding}><span>Install Metamask</span></button>
+          <button className="connect-wallet" onClick={startOnboarding}>
+            <span>Install Metamask</span>
+          </button>
         )}
       </div>
     );

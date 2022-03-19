@@ -23,6 +23,7 @@ import Footer from "../components/footer/footer";
 import { useState } from "react";
 import useDeadCuties from "../hooks/useDeadCuties";
 import useAccessToken from "../hooks/useAccessToken";
+import useTokenBalance from "../hooks/useTokenBalance";
 import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
 const ACCESS_TOKEN_ADDRESS = "0xc5ec6B520d589f6375dCc237965DE9E2702476F3";
@@ -76,13 +77,13 @@ function Claim() {
         <title>The Dead Cuties</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header startTimer={startTimer} />
       <main className="mint-main">
         {" "}
         <section className="mint">
           {" "}
           <div className="canvas">
+            {" "}
             <div className="canvas__elements">
               <img src={lightning4.src} />
             </div>
@@ -92,6 +93,7 @@ function Claim() {
               <div className="canvas__btm-trees"></div>
               <div className="canvas__btm-graves"></div>
               <div className="canvas__btm-graves"></div>
+
               {/* <div className="canvas__btm-trees"></div>  */}
             </div>
           </div>
@@ -108,6 +110,7 @@ function Claim() {
           </div>
         </section>
         <section>
+          <Account triedToEagerConnect={triedToEagerConnect} />
           <Collection baseURI={BASE_URI} arrayOfNFTIDs={arrayOfNFTIDs} />
         </section>
       </main>

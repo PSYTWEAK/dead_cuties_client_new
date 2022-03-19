@@ -2,11 +2,9 @@ import NFTImages from "../../data/nft-collection";
 
 console.log("> NFTImages");
 console.log(NFTImages);
-import IPFS from "js-ipfs-fetch";
-import makeIpfsFetch from "js-ipfs-fetch";
 
 function Collection({ baseURI, arrayOfNFTIDs }) {
-  const getImages = async () => {
+  /*   const getImages = async () => {
     const ipfs = await IPFS.create();
     const fetch = await makeIpfsFetch({ ipfs });
 
@@ -15,7 +13,7 @@ function Collection({ baseURI, arrayOfNFTIDs }) {
       let imageLink = await response.image();
       let singleImage = await fetch(imageLink);
     }
-  };
+  }; */
 
   return (
     <div className="collection">

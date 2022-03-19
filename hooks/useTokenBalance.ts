@@ -11,25 +11,14 @@ function getTokenBalance(contract: ERC20) {
   };
 }
 
-export default function useTokenBalance(
-  address: string,
-  tokenAddress: string,
-  suspense = false
-) {
+export default function useTokenBalance(address: string, tokenAddress: string, suspense = false) {
   const contract = useTokenContract(tokenAddress);
 
-  const shouldFetch =
-    typeof address === "string" &&
-    typeof tokenAddress === "string" &&
-    !!contract;
-
-  const result = useSWR(
-    shouldFetch ? ["TokenBalance", address, tokenAddress] : null,
-    getTokenBalance(contract),
-    {
-      suspense,
-    }
-  );
+  const shouldFetch = typeof address === "string" && typeof tokenAddress === "string" && !!contract;
+  console.log("4343434");
+  const result = useSWR(shouldFetch ? ["TokenBalance", address, tokenAddress] : null, getTokenBalance(contract), {
+    suspense,
+  });
   useKeepSWRDataLiveAsBlocksArrive(result.mutate);
 
   return result;
