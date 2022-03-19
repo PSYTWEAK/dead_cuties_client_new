@@ -28,7 +28,7 @@ import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
 const ACCESS_TOKEN_ADDRESS = "0xbd0591972ABe6c8f9e9f263a705a7Fd143036b1E";
 const DEAD_CUTIES_ADDRESS = "0xc626dcedFd95161541892942D7705E4821d44D3F";
-const BASE_URI = "ipfs://bafybeihddbznstiikpjjnmawqw4ldlmoijtu6uvedzvrpwjwel25jtqnza/";
+const BASE_URI = "bafybeihddbznstiikpjjnmawqw4ldlmoijtu6uvedzvrpwjwel25jtqnza";
 
 function Claim() {
   const [startTimer, setStartTimer] = useState(false);
