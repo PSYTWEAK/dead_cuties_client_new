@@ -55,9 +55,6 @@ function Claim() {
     }
   };
 
-  if (account) {
-    getArrayOfNFTIDs();
-  }
   return (
     <div>
       <svg className="hidden" xmlns="http://www.w3.org/2000/svg">
@@ -77,8 +74,8 @@ function Claim() {
         <title>The Dead Cuties</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-      <Header startTimer={startTimer} triedToEagerConnect={triedToEagerConnect}/>
+
+      <Header startTimer={startTimer} triedToEagerConnect={triedToEagerConnect} />
       <main className="mint-main">
         {" "}
         <section className="mint">
