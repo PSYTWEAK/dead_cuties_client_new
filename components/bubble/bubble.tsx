@@ -6,7 +6,7 @@ import useTokenBalance from "../../hooks/useTokenBalance";
 import useDeadCutiesDepositAccessToken from "../../hooks/useDeadCutiesDepositAccessToken";
 import useDeadCutiesMint from "../../hooks/useDeadCutiesMint";
 
-function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
+function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract, setNumOfStateChange }) {
   const inputRef = useRef(null);
   const { account } = useWeb3React();
 
@@ -62,10 +62,12 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
         // mintStep === 1 shows "Pay with access token" button and starts timer
         await useDeadCutiesDepositAccessToken(deadCutiesContract);
         setStartTimer(true);
+        setNumOfStateChange(Math.random());
       }
       if (mintStep >= 2) {
         // mintStep === 2 shows amount and reap souls button so you can put in here minting function
         await useDeadCutiesMint(deadCutiesContract, Number(inputValue), priceOfMint);
+        setNumOfStateChange(Math.random());
       }
       currentStep < 3 ? setMintStep(mintStep + 1) : setMintStep(mintStep);
     } catch (err) {

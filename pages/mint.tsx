@@ -35,6 +35,8 @@ function Claim() {
 
   const [arrayOfNFTIDs, setArrayOfNFTIDs] = useState([]);
 
+  const [numOfStateChanges, setNumOfStateChange] = useState([]);
+
   const deadCutiesContract = useDeadCuties(DEAD_CUTIES_ADDRESS);
   const accessTokenContract = useAccessToken(ACCESS_TOKEN_ADDRESS);
 
@@ -104,7 +106,7 @@ function Claim() {
           {/* <div className="stars">
                         <Lottie options={twinkling} />
                     </div> */}{" "}
-          <Bubble setStartTimer={setStartTimer} deadCutiesContract={deadCutiesContract} accessTokenContract={accessTokenContract} />
+          <Bubble setStartTimer={setStartTimer} deadCutiesContract={deadCutiesContract} accessTokenContract={accessTokenContract} setNumOfStateChange={setNumOfStateChange} />
           {/* <div className="platform">
                         <Person position={"top"} direction={"to-left"} />
                         <Person position={"bottom"} direction={"to-right"} />
@@ -114,7 +116,7 @@ function Claim() {
           </div>
         </section>
         <section>
-          <Collection baseURI={BASE_URI} deadCutiesContract={deadCutiesContract} />
+          <Collection baseURI={BASE_URI} deadCutiesContract={deadCutiesContract} numOfStateChanges={numOfStateChanges} setNumOfStateChange={setNumOfStateChange} />
         </section>
       </main>
       <Footer />

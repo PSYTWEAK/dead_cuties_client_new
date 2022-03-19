@@ -5,10 +5,19 @@ import useDeadCutiesReRoll from "../../hooks/useDeadCutiesReRoll";
 import useDeadCutiesGetWalletIds from "../../hooks/useDeadCutiesGetWalletIds";
 import { useWeb3React } from "@web3-react/core";
 
-function Collection({ baseURI, deadCutiesContract }) {
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+function Collection({ baseURI, deadCutiesContract, numOfStateChanges, setNumOfStateChange }) {
   const [links, setLinks] = useState([]);
   const [arrayOfNFTIDs, setArrayOfNFTIDs] = useState([]);
   const { account } = useWeb3React();
+  const [counter, setCounter] = useState(0);
+
+  const reRoll = async (contract, id) => {
+    await useDeadCutiesReRoll(contract, id);
+    await delay(7000);
+    setNumOfStateChange(Math.random());
+  };
 
   const getLinks = async () => {
     console.log(account);
@@ -17,6 +26,9 @@ function Collection({ baseURI, deadCutiesContract }) {
       try {
         let _arrayOfNFTIDs = await useDeadCutiesGetWalletIds(deadCutiesContract, account);
         let _links = [];
+        if (counter < 4) {
+          setCounter(counter + 1);
+        }
 
         console.log(arrayOfNFTIDs.length, " length");
         console.log(arrayOfNFTIDs);
@@ -28,6 +40,8 @@ function Collection({ baseURI, deadCutiesContract }) {
       } catch (err) {
         console.log(err);
       }
+      await delay(10000);
+      setNumOfStateChange(Math.random());
     }
   };
 
@@ -49,7 +63,7 @@ function Collection({ baseURI, deadCutiesContract }) {
 
   useEffect(() => {
     getLinks();
-  }, []);
+  }, [counter, account, numOfStateChanges]);
 
   return (
     <div className="collection">
@@ -60,7 +74,13 @@ function Collection({ baseURI, deadCutiesContract }) {
             return (
               <div key={link} className="collection__grid-item">
                 <Image alt={"image"} src={link} layout="responsive" width="200" height="200" quality={80} />
-                <button onClick={() => useDeadCutiesReRoll(deadCutiesContract, arrayOfNFTIDs[i])}>Reroll (0.015 ETH)</button>
+                <button
+                  onClick={() => {
+                    reRoll(deadCutiesContract, arrayOfNFTIDs[i]);
+                  }}
+                >
+                  Reroll (0.015 ETH)
+                </button>
               </div>
             );
           } else {
