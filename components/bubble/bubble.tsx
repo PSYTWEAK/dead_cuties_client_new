@@ -12,7 +12,6 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract, setNum
 
   const [inputValue, setInputValue] = useState("1");
   let [mintStep, setMintStep] = useState(1);
-  // const []
   let [priceOfMint, setPriceOfMint] = useState(0.03);
 
   const { data } = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
@@ -21,11 +20,8 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract, setNum
 
   useEffect(() => {
     if (data) {
-      console.log(">>>> data");
-      console.log(data);
       balance = data.toString();
-      console.log("> mintStep");
-      console.log(mintStep);
+
       if (balance !== "0" && mintStep === 0) {
         setMintStep(mintStep + 1);
       }

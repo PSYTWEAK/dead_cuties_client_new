@@ -5,9 +5,8 @@ import Account from '../Account';
 
 function Header({ startTimer, triedToEagerConnect }) {
     const [counter, setCounter] = useState(600);
-    const [minutes, setMinutes] = useState(Math.floor((counter % 3600) / 60));
-    const [seconds, setSeconds] = useState(counter % 60);
-
+    let minutes = (Math.floor((counter % 3600) / 60));
+    let seconds = (counter % 60);
     const formatTimer = function (time: number) {
         return time < 10 ? `0${time}` : time;
     }
@@ -15,16 +14,26 @@ function Header({ startTimer, triedToEagerConnect }) {
     let formattedSeconds = formatTimer(seconds);
     let formattedMinutes = formatTimer(minutes);
 
+    let [timeLeft, setTimeLeft] = useState(`${formattedMinutes}:${formattedSeconds}`);
+
     useEffect(() => {
-        counter > 0 && startTimer === true && setTimeout(() => {
-            setCounter(counter - 1);
-            setMinutes(Math.floor((counter % 3600) / 60));
-            setSeconds(counter % 60);
+        if (startTimer === true) {
+            if (counter > 0) {
+                setTimeout(() => {
+                    setCounter(counter - 1);
+                    minutes = (Math.floor((counter % 3600) / 60));
+                    seconds = (counter % 60);
 
-            formattedSeconds = formatTimer(seconds);
-            formattedMinutes = formatTimer(minutes);
+                    formattedSeconds = formatTimer(seconds);
+                    formattedMinutes = formatTimer(minutes);
 
-        }, 1000);
+                    setTimeLeft(`${formattedMinutes}:${formattedSeconds}`);
+                }, 1000);
+            } else {
+                setTimeLeft('Out of time.');
+            }
+        }
+
     }, [counter, startTimer]);
 
     return (
@@ -34,7 +43,7 @@ function Header({ startTimer, triedToEagerConnect }) {
                     <li>
                         <h1>The Dead Cuties</h1>
                         <span className="timer">
-                            {formattedMinutes}:{formattedSeconds}
+                            {timeLeft}
                         </span>
                     </li>
                     <li className="header__wallet">
