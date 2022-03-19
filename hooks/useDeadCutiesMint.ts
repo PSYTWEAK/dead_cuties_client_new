@@ -1,16 +1,14 @@
 import useSWR from "swr";
 import type { TheDeadCuties } from "../contracts/types";
-import { BytesLike } from "ethers";
-import Merkletree from "./merkle/Merkletree.json";
 
-async function mintDeadCuties(contract: TheDeadCuties, amount: number) {
-  const res = await contract.mint(amount);
+async function mintDeadCuties(contract: TheDeadCuties, amount: number, price: number) {
+  const res = await contract.mint(amount, { value: price });
 
   return res;
 }
 
-export default function useDeadCutiesMint(contract: TheDeadCuties, amount: number) {
-  const result = mintDeadCuties(contract, amount);
+export default function useDeadCutiesMint(contract: TheDeadCuties, amount: number, price: number) {
+  const result = mintDeadCuties(contract, amount, price);
 
   return result;
 }

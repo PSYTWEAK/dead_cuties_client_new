@@ -59,7 +59,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
       }
       if (mintStep === 2) {
         // mintStep === 2 shows amount and reap souls button so you can put in here minting function
-        await useDeadCutiesMint(deadCutiesContract, Number(inputValue));
+        await useDeadCutiesMint(deadCutiesContract, Number(inputValue), priceOfMint);
       }
       setMintStep(mintStep + 1);
     } catch (err) {
