@@ -63,7 +63,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
         await useDeadCutiesDepositAccessToken(deadCutiesContract);
         setStartTimer(true);
       }
-      if (mintStep === 2) {
+      if (mintStep >= 2) {
         // mintStep === 2 shows amount and reap souls button so you can put in here minting function
         await useDeadCutiesMint(deadCutiesContract, Number(inputValue), priceOfMint);
       }
@@ -129,7 +129,19 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
             <p>
               Your Dead Cuties should be visible below...
               <br />
-              If you don't vibe with some of them, you can click Reroll and I will get you another for half the price
+              If you don't vibe with some of them, you can click Reroll and I will get you another for half the price.
+            </p>
+
+            <p>... Scroll down, they would love to see you.</p>
+            <p> Do you want to me to bind more cuties to you? </p>
+          </>
+        )}
+        {mintStep === 4 && (
+          <>
+            <p>
+              Your Dead Cuties should be visible below...
+              <br />
+              If you don't vibe with some of them, you can click Reroll and I will get you another for half the price.
             </p>
 
             <p>... Scroll down, they would love to see you.</p>
@@ -142,7 +154,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
           <>
             <button
               onClick={() => {
-                changeMintStep();
+                changeMintStep(mintStep);
               }}
             >
               Pay the Reaper with your access token
@@ -158,7 +170,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
                 <button {...(inputValue === "1" ? { disabled: true } : {})} onClick={() => stepTrigger("down")}></button>
               </span>
             </span>
-            <button onClick={() => changeMintStep(mintStep)}>reap cuties for the price of {priceOfMint} ETH</button>
+            <button onClick={() => changeMintStep(mintStep)}>Bind cuties to you for the price of {priceOfMint} ETH</button>
           </>
         )}
       </div>
