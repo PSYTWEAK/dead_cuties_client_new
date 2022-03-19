@@ -42,6 +42,7 @@ function Collection({ baseURI, arrayOfNFTIDs }) {
   return (
     <div className="collection">
       <div className="collection__top"></div>
+      <h2>Your DeadCuties</h2>
       <div className="collection__grid">
         {links &&
           links.map((link, i) => {

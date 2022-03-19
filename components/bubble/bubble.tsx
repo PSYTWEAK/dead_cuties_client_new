@@ -21,11 +21,8 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
 
   useEffect(() => {
     if (data) {
-      console.log('>>>> data');
-      console.log(data);
       balance = data.toString();
-      console.log('> mintStep');
-      console.log(mintStep);
+
       if (balance !== "0" && mintStep === 0) {
         setMintStep(mintStep + 1);
       }
