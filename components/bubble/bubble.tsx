@@ -14,7 +14,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
     let [mintStep, setMintStep] = useState(0);
     let [priceOfMint, setPriceOfMint] = useState(0);
 
-    let { data } = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
+    const data = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
 
     let balance;
 
@@ -27,8 +27,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
         } else {
             balance = "0";
         }
-    }),
-        [data];
+    }),[data];
 
     const stepTrigger = function (pos) {
         if (inputRef.current) {

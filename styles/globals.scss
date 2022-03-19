@@ -318,6 +318,7 @@ hgroup {
 }
 
 .canvas__elements img {
+  will-change: transform, opacity;
   max-height: 100vh;
   position: absolute;
   z-index: 0;
@@ -405,6 +406,8 @@ hgroup {
 } */
 
 .canvas__btm {
+  will-change: opacity;
+
   position: absolute;
   width: 100vw;
   height: 100px;
