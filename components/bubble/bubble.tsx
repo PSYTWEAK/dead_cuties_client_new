@@ -14,7 +14,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   let [mintStep, setMintStep] = useState(2);
   let [priceOfMint, setPriceOfMint] = useState(0.03);
 
-  let { data } = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
+  const data = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
 
   let balance;
 
