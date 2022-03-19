@@ -61,6 +61,7 @@ function Claim() {
       <Head>
         <title>The Dead Cuties</title>
         <link rel="icon" href="/favicon.ico" />
+        <Account triedToEagerConnect={triedToEagerConnect} />
       </Head>
 
       <Header startTimer={startTimer} />
@@ -90,7 +91,7 @@ function Claim() {
                         <Person position={"bottom"} direction={"to-right"} />
                     </div> */}
           <div className="reaper">
-            <img src={reaperSprite1.src} /> <Account triedToEagerConnect={triedToEagerConnect} />
+            <img src={reaperSprite1.src} />
           </div>
         </section>
         <section>

@@ -5,6 +5,7 @@ import { useWeb3React } from "@web3-react/core";
 import useTokenBalance from "../../hooks/useTokenBalance";
 import useDeadCutiesDepositAccessToken from "../../hooks/useDeadCutiesDepositAccessToken";
 import useDeadCutiesMint from "../../hooks/useDeadCutiesMint";
+import Account from "../components/Account";
 
 function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   const inputRef = useRef(null);
@@ -42,7 +43,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
 
   const calculatePrice = (quantity) => {
     let noOffer = quantity % 3;
-    let offer = quantity / 3;
+    let offer = Math.floor(quantity / 3);
     let price = offer * 2 * 0.03 + noOffer * 0.03;
     return price;
   };
