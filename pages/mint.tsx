@@ -77,7 +77,8 @@ function Claim() {
         <title>The Dead Cuties</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header startTimer={startTimer} />
+      
+      <Header startTimer={startTimer} triedToEagerConnect={triedToEagerConnect}/>
       <main className="mint-main">
         {" "}
         <section className="mint">
@@ -110,7 +111,6 @@ function Claim() {
           </div>
         </section>
         <section>
-          <Account triedToEagerConnect={triedToEagerConnect} />
           <Collection baseURI={BASE_URI} arrayOfNFTIDs={arrayOfNFTIDs} />
         </section>
       </main>

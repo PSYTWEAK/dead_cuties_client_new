@@ -12,6 +12,7 @@
         font-size: 40px;
         margin: 0;
     }
+
     nav,
     ul {
         width: 100%;
@@ -22,7 +23,7 @@
         padding: 0px;
         height: 100%;
         margin: 0;
-        justify-content:flex-end
+        justify-content: flex-end
     }
 
     li {
@@ -43,12 +44,16 @@
     a {
         @include standard-font;
     }
+
     a,
     img {
         height: 100%;
         display: inline-block;
     }
 
+    &__wallet {
+        width: auto !important;
+    }
 
     .timer {
         color: rgb(143, 32, 32);

@@ -50,6 +50,7 @@
         height: calc(100% - 63px);
         display: flex;
         align-self: center;
+        will-change: transform;
     }
 
     &__grid-item {

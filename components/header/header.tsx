@@ -1,8 +1,9 @@
 import links from '../../data/links';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Account from '../Account';
 
-function Header({ startTimer }) {
+function Header({ startTimer, triedToEagerConnect }) {
     const [counter, setCounter] = useState(600);
     const [minutes, setMinutes] = useState(Math.floor((counter % 3600) / 60));
     const [seconds, setSeconds] = useState(counter % 60);
@@ -35,6 +36,9 @@ function Header({ startTimer }) {
                         <span className="timer">
                             {formattedMinutes}:{formattedSeconds}
                         </span>
+                    </li>
+                    <li className="header__wallet">
+                        <Account triedToEagerConnect={triedToEagerConnect} />
                     </li>
                     {links.social.map((item, idx) => {
                         return (
