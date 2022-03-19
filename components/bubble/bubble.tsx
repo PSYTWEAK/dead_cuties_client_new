@@ -11,8 +11,8 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   const { account } = useWeb3React();
 
   const [inputValue, setInputValue] = useState("1");
-  let [mintStep, setMintStep] = useState(0);
-  let [priceOfMint, setPriceOfMint] = useState(0);
+  let [mintStep, setMintStep] = useState(2);
+  let [priceOfMint, setPriceOfMint] = useState(0.03);
 
   let { data } = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
 
@@ -21,7 +21,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
   useEffect(() => {
     if (data) {
       balance = data.toString();
-      if (balance !== "0") {
+      if (balance !== "0" && mintStep < 2) {
         setMintStep(1);
       }
     } else {
@@ -38,7 +38,8 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
         inputRef.current.stepDown();
       }
       setInputValue(inputRef.current.value);
-      let price = calculatePrice(inputRef.current.value);
+      let inputVal = Number(inputRef.current.value);
+      let price = calculatePrice(inputVal < 1 ? "1" : inputRef.current.value);
       setPriceOfMint(price);
     }
   };
@@ -102,7 +103,14 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
             <p>For a fee, I will bind them to you until you are ready to release them.</p>
           </>
         )}
-        {mintStep === 2 && <>How many souls shall I bind to you?</>}
+        {mintStep === 2 && (
+          <>
+            <p>You just got your free DeadCutie...</p>
+
+            <p>You only have a limited amount of time to mint more</p>
+            <p>...How many more DeadCuties shall I bind to you?</p>
+          </>
+        )}
       </div>
       <div className="bubble__form">
         {mintStep === 1 && (
@@ -125,7 +133,7 @@ function Bubble({ setStartTimer, deadCutiesContract, accessTokenContract }) {
                 <button {...(inputValue === "1" ? { disabled: true } : {})} onClick={() => stepTrigger("down")}></button>
               </span>
             </span>
-            <button>reap cuties for the price of {priceOfMint} ETH</button>
+            <button onClick={() => changeMintStep()}>reap cuties for the price of {priceOfMint} ETH</button>
           </>
         )}
       </div>
