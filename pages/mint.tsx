@@ -26,9 +26,9 @@ import useAccessToken from "../hooks/useAccessToken";
 import useTokenBalance from "../hooks/useTokenBalance";
 import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
-const ACCESS_TOKEN_ADDRESS = "0xC2b7167A1D24DC26D9d126bdE315ed0db705dD41";
-const DEAD_CUTIES_ADDRESS = "0x396aED0a6075b7dC01e9f1795E77E5Dc3987C303";
-const BASE_URI = "bafybeihddbznstiikpjjnmawqw4ldlmoijtu6uvedzvrpwjwel25jtqnza";
+const ACCESS_TOKEN_ADDRESS = "0x536FBCcD358B8EdA0aa905f4B93A39B46C5227d2";
+const DEAD_CUTIES_ADDRESS = "0x02692941Aaa28E03C2BC0Cc460a6f4F40b319077";
+const BASE_URI = "bafybeigkjl7zq73dzgessun5r4eojmq72u6eh6q5bogm7atw7vbd7df75u";
 
 function Claim() {
   const [startTimer, setStartTimer] = useState(false);
@@ -36,6 +36,8 @@ function Claim() {
   const [arrayOfNFTIDs, setArrayOfNFTIDs] = useState([]);
 
   const [numOfStateChanges, setNumOfStateChange] = useState([]);
+
+  const [atMintStepThree, setAtMintStepThree] = useState(false);
 
   const deadCutiesContract = useDeadCuties(DEAD_CUTIES_ADDRESS);
   const accessTokenContract = useAccessToken(ACCESS_TOKEN_ADDRESS);
@@ -76,7 +78,7 @@ function Claim() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header startTimer={startTimer} triedToEagerConnect={triedToEagerConnect} />
+      <Header setStartTimer={setStartTimer} startTimer={startTimer} triedToEagerConnect={triedToEagerConnect} setAtMintStepThree={setAtMintStepThree} deadCutiesContract={deadCutiesContract} />
       <main className="mint-main">
         {" "}
         <section className="mint">
@@ -99,7 +101,14 @@ function Claim() {
           {/* <div className="stars">
                         <Lottie options={twinkling} />
                     </div> */}{" "}
-          <Bubble setStartTimer={setStartTimer} deadCutiesContract={deadCutiesContract} accessTokenContract={accessTokenContract} setNumOfStateChange={setNumOfStateChange} />
+          <Bubble
+            startTimer={startTimer}
+            setStartTimer={setStartTimer}
+            deadCutiesContract={deadCutiesContract}
+            accessTokenContract={accessTokenContract}
+            setNumOfStateChange={setNumOfStateChange}
+            atMintStepThree={atMintStepThree}
+          />
           {/* <div className="platform">
                         <Person position={"top"} direction={"to-left"} />
                         <Person position={"bottom"} direction={"to-right"} />
@@ -109,7 +118,7 @@ function Claim() {
           </div>
         </section>
         <section>
-          <Collection baseURI={BASE_URI} deadCutiesContract={deadCutiesContract} numOfStateChanges={numOfStateChanges} setNumOfStateChange={setNumOfStateChange} />
+          <Collection startTimer={startTimer} baseURI={BASE_URI} deadCutiesContract={deadCutiesContract} numOfStateChanges={numOfStateChanges} setNumOfStateChange={setNumOfStateChange} />
         </section>
       </main>
       <Footer />

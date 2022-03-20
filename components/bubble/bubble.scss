@@ -35,7 +35,8 @@
 
     &__form-input {
         min-height: 60px;
-        width: 150px;
+        width: 300px;
+        transform: scaleY(1);
         position: relative;
         display: flex;
         // flex-direction: row;

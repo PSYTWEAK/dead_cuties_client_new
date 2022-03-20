@@ -15,13 +15,11 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
 
   const ReRoll = async (contract, id) => {
     await useDeadCutiesReRoll(contract, id);
-    await delay(7000);
+    await delay(3000);
     setNumOfStateChange(Math.random());
   };
 
   const GetLinks = async () => {
-    console.log(account);
-    console.log(deadCutiesContract);
     if (account) {
       try {
         let _arrayOfNFTIDs = await _GetWalletIds();
@@ -29,9 +27,6 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
         if (counter < 4) {
           setCounter(counter + 1);
         }
-
-        console.log(arrayOfNFTIDs.length, " length");
-        console.log(arrayOfNFTIDs);
         for (let i = 0; i < arrayOfNFTIDs.length; i++) {
           _links.push(await getImageLink(`https://ipfs.io/ipfs/${baseURI}/${arrayOfNFTIDs[i]}`));
         }
@@ -77,7 +72,7 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
           if (link) {
             return (
               <div key={i} className="collection__grid-item">
-                <Image alt={"image"} src={link} layout="responsive" width="200" height="200" quality={80} />
+                <img alt={"image"} src={link} width="350" height="350" />
                 {startTimer !== null && (
                   <button
                     onClick={() => {

@@ -15,7 +15,6 @@ export default function useTokenBalance(address: string, tokenAddress: string, s
   const contract = useTokenContract(tokenAddress);
 
   const shouldFetch = typeof address === "string" && typeof tokenAddress === "string" && !!contract;
-  console.log("4343434");
   const result = useSWR(shouldFetch ? ["TokenBalance", address, tokenAddress] : null, getTokenBalance(contract), {
     suspense,
   });

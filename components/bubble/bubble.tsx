@@ -6,7 +6,7 @@ import useTokenBalance from "../../hooks/useTokenBalance";
 import useDeadCutiesDepositAccessToken from "../../hooks/useDeadCutiesDepositAccessToken";
 import useDeadCutiesMint from "../../hooks/useDeadCutiesMint";
 
-function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenContract, setNumOfStateChange }) {
+function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenContract, setNumOfStateChange, atMintStepThree }) {
   const inputRef = useRef(null);
   const { account } = useWeb3React();
 
@@ -17,6 +17,12 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
   const { data } = useTokenBalance(account, accessTokenContract ? accessTokenContract.address : "");
 
   let balance;
+
+  useEffect(() => {
+    if (atMintStepThree) {
+      setMintStep(3);
+    }
+  }, [atMintStepThree]);
 
   useEffect(() => {
     if (data) {
@@ -177,7 +183,7 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
                 </span>
               </span>
             )}
-            <button onClick={() => ChangeMintStep(mintStep)}>{startTimer !== null ? `Bind cuties to you for the price of ${priceOfMint} ETH` : "Time for minting has passed"}</button>
+            <button onClick={() => ChangeMintStep(mintStep)}>{startTimer !== null ? `Mint ${inputValue} cuties to you for the price of ${priceOfMint} ETH` : "Time for minting has passed"}</button>
           </>
         )}
       </div>

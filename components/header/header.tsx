@@ -1,12 +1,16 @@
 import links from "../../data/links";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useWeb3React } from "@web3-react/core";
 import Account from "../Account";
+import useDeadCutiesGetTimeRemaining from "../../hooks/useDeadCutiesGetTimeRemaining";
 
-function Header({ startTimer, setStartTimer, triedToEagerConnect }) {
+function Header({ startTimer, setStartTimer, triedToEagerConnect, setAtMintStepThree, deadCutiesContract }) {
   const [counter, setCounter] = useState(600);
   let minutes = Math.floor((counter % 3600) / 60);
   let seconds = counter % 60;
+
+  const { account } = useWeb3React();
   const formatTimer = function (time: number) {
     return time < 10 ? `0${time}` : time;
   };
@@ -15,6 +19,21 @@ function Header({ startTimer, setStartTimer, triedToEagerConnect }) {
   let formattedMinutes = formatTimer(minutes);
 
   let [timeLeft, setTimeLeft] = useState(`${formattedMinutes}:${formattedSeconds}`);
+
+  const _getTimeRemaining = async function () {
+    let timeRemaining = await useDeadCutiesGetTimeRemaining(deadCutiesContract, account);
+    if (timeRemaining > 0) {
+      setCounter(timeRemaining);
+      setStartTimer(true);
+      setAtMintStepThree(true);
+    }
+  };
+
+  useEffect(() => {
+    if (deadCutiesContract && account) {
+      _getTimeRemaining();
+    }
+  }, [deadCutiesContract]);
 
   useEffect(() => {
     if (startTimer === true) {
