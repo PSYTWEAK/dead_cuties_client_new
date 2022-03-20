@@ -52,23 +52,30 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
     return price;
   };
 
-  const changeMintStep = async function (currentStep) {
+  const ChangeMintStep = async function (currentStep) {
     try {
       if (mintStep === 1) {
         // mintStep === 1 shows "Pay with access token" button and starts timer
-        await useDeadCutiesDepositAccessToken(deadCutiesContract);
+        await _depositAccessToken();
         setStartTimer(true);
         setNumOfStateChange(Math.random());
       }
       if (mintStep >= 2) {
         // mintStep === 2 shows amount and reap souls button so you can put in here minting function
-        await useDeadCutiesMint(deadCutiesContract, Number(inputValue), priceOfMint);
+        await _mint();
         setNumOfStateChange(Math.random());
       }
       currentStep < 3 ? setMintStep(mintStep + 1) : setMintStep(mintStep);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const _mint = async function () {
+    await useDeadCutiesMint(deadCutiesContract, Number(inputValue), priceOfMint);
+  };
+  const _depositAccessToken = async function () {
+    await useDeadCutiesDepositAccessToken(deadCutiesContract);
   };
 
   const checkingInput = function (e) {
@@ -97,7 +104,7 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
               ...so many people who want them.
             </p>
             <p>
-              Unless you obtained access tokens I can't get them for you.
+              Unless you obtained access tokens I can&apos;t get them for you.
               <br />
               Come back when you get it.
             </p>
@@ -109,7 +116,7 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
             <p>
               ...as I have no use for them.
               <br />
-              They are troubled by their death and aren't ready to move on beyond.
+              They are troubled by their death and aren&apos;t ready to move on beyond.
             </p>
             <p>For a fee, I will bind these dead cuties to you until you are ready to release them.</p>
           </>
@@ -127,7 +134,7 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
             <p>
               Your Dead Cuties should be visible below...
               <br />
-              If you don't vibe with some of them, you can click Reroll and I will get you another for half the price.
+              If you don&apos;t vibe with some of them, you can click Reroll and I will get you another for half the price.
             </p>
 
             <p>... Scroll down, they would love to see you.</p>
@@ -139,7 +146,7 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
             <p>
               Your Dead Cuties should be visible below...
               <br />
-              If you don't vibe with some of them, you can click Reroll and I will get you another for half the price.
+              If you don&apos;t vibe with some of them, you can click Reroll and I will get you another for half the price.
             </p>
 
             <p>... Scroll down, they would love to see you.</p>
@@ -152,7 +159,7 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
           <>
             <button
               onClick={() => {
-                changeMintStep(mintStep);
+                ChangeMintStep(mintStep);
               }}
             >
               Pay the Reaper with your access token
@@ -170,7 +177,7 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
                 </span>
               </span>
             )}
-            <button onClick={() => changeMintStep(mintStep)}>{startTimer !== null ? `Bind cuties to you for the price of ${priceOfMint} ETH` : "Time for minting has passed"}</button>
+            <button onClick={() => ChangeMintStep(mintStep)}>{startTimer !== null ? `Bind cuties to you for the price of ${priceOfMint} ETH` : "Time for minting has passed"}</button>
           </>
         )}
       </div>

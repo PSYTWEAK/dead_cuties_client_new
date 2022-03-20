@@ -50,13 +50,6 @@ function Claim() {
   const triedToEagerConnect = useEagerConnect();
   const isConnected = typeof account === "string" && !!library;
 
-  const getArrayOfNFTIDs = async () => {
-    let _arrayOfNFTIDs = await useDeadCutiesGetWalletIds(deadCutiesContract, account);
-    if (_arrayOfNFTIDs) {
-      setArrayOfNFTIDs(_arrayOfNFTIDs);
-    }
-  };
-
   /*   useEffect(() => {
     if (account) {
       getArrayOfNFTIDs();

@@ -13,18 +13,18 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
   const { account } = useWeb3React();
   const [counter, setCounter] = useState(0);
 
-  const reRoll = async (contract, id) => {
+  const ReRoll = async (contract, id) => {
     await useDeadCutiesReRoll(contract, id);
     await delay(7000);
     setNumOfStateChange(Math.random());
   };
 
-  const getLinks = async () => {
+  const GetLinks = async () => {
     console.log(account);
     console.log(deadCutiesContract);
     if (account) {
       try {
-        let _arrayOfNFTIDs = await useDeadCutiesGetWalletIds(deadCutiesContract, account);
+        let _arrayOfNFTIDs = await _GetWalletIds();
         let _links = [];
         if (counter < 4) {
           setCounter(counter + 1);
@@ -44,6 +44,9 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
       setNumOfStateChange(Math.random());
     }
   };
+  const _GetWalletIds = async function () {
+    return await useDeadCutiesGetWalletIds(deadCutiesContract, account);
+  };
 
   const getImageLink = async (metaDataLink) => {
     let imageLink = "";
@@ -62,7 +65,7 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
   };
 
   useEffect(() => {
-    getLinks();
+    GetLinks();
   }, [counter, account, numOfStateChanges]);
 
   return (
@@ -75,15 +78,15 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
             return (
               <div key={i} className="collection__grid-item">
                 <Image alt={"image"} src={link} layout="responsive" width="200" height="200" quality={80} />
-                {startTimer !== null &&
+                {startTimer !== null && (
                   <button
                     onClick={() => {
-                      reRoll(deadCutiesContract, arrayOfNFTIDs[i]);
+                      ReRoll(deadCutiesContract, arrayOfNFTIDs[i]);
                     }}
                   >
                     Reroll (0.015 ETH)
                   </button>
-                }
+                )}
               </div>
             );
           } else {
