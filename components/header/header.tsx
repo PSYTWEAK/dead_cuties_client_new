@@ -61,7 +61,7 @@ function Header({ startTimer, setStartTimer, triedToEagerConnect, setAtMintStepT
         <ul>
           <li>
             <h1>The Dead Cuties</h1>
-            <span className="timer">{timeLeft}</span>
+            {/*    <span className="timer">{timeLeft}</span> */}
           </li>
           <li className="header__wallet">
             <Account triedToEagerConnect={triedToEagerConnect} />
