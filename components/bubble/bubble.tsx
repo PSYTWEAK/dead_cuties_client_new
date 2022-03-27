@@ -102,90 +102,13 @@ function Bubble({ setStartTimer, startTimer, deadCutiesContract, accessTokenCont
   return (
     <div mint-step={mintStep} className="bubble">
       <div className="bubble__text">
-        {mintStep === 0 && (
-          <>
-            <p>
-              So little wandering souls...
-              <br />
-              ...so many people who want them.
-            </p>
-            <p>
-              Unless you obtained access tokens I can&apos;t get them for you.
-              <br />
-              Come back when you get it.
-            </p>
-          </>
-        )}
-        {mintStep === 1 && (
-          <>
-            <p>Their time has come. They are wandering the Ether now. I can get these lost cuties for you...</p>
-            <p>
-              ...as I have no use for them.
-              <br />
-              They are troubled by their death and aren&apos;t ready to move on beyond.
-            </p>
-            <p>For a fee, I will bind these dead cuties to you until you are ready to release them.</p>
-          </>
-        )}
-        {mintStep === 2 && (
-          <>
-            <p>I have bound one to you for free...</p>
-
-            <p>A lot of people want these cuties for themselves, so I will give you 10 minutes of your time to mint as many as you like.</p>
-            <p>...How many more DeadCuties shall I bind to you?</p>
-          </>
-        )}
-        {mintStep === 3 && (
-          <>
-            <p>
-              Your Dead Cuties should be visible below...
-              <br />
-              If you don&apos;t vibe with some of them, you can click Reroll and I will get you another for half the price.
-            </p>
-
-            <p>... Scroll down, they would love to see you.</p>
-            <p> Do you want to me to bind more cuties to you? </p>
-          </>
-        )}
-        {mintStep === 4 && (
-          <>
-            <p>
-              Your Dead Cuties should be visible below...
-              <br />
-              If you don&apos;t vibe with some of them, you can click Reroll and I will get you another for half the price.
-            </p>
-
-            <p>... Scroll down, they would love to see you.</p>
-            <p> Do you want to me to bind more cuties to you? </p>
-          </>
-        )}
-      </div>
-      <div className="bubble__form">
-        {mintStep === 1 && (
-          <>
-            <button
-              onClick={() => {
-                ChangeMintStep(mintStep);
-              }}
-            >
-              Pay the Reaper with your access token
-            </button>
-          </>
-        )}
-        {mintStep >= 2 && (
-          <>
-            {startTimer !== null && (
-              <span className="bubble__form-input">
-                <input ref={inputRef} type="number" min="1" onKeyPress={(e) => validation(e)} onChange={(e) => checkingInput(e)} value={inputValue} />
-                <span className="bubble__form-input-steps">
-                  <button onClick={() => stepTrigger("up")}></button>
-                  <button {...(inputValue === "1" ? { disabled: true } : {})} onClick={() => stepTrigger("down")}></button>
-                </span>
-              </span>
-            )}
-            <button onClick={() => ChangeMintStep(mintStep)}>{startTimer !== null ? `Mint ${inputValue} cuties to you for the price of ${priceOfMint} ETH` : "Time for minting has passed"}</button>
-          </>
-        )}
+        <>
+          <p>
+            All the deadCuties have been minted...
+            <br />
+            Total supply is 945
+          </p>
+        </>
       </div>
     </div>
   );
