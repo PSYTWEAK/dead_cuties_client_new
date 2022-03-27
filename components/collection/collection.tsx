@@ -73,15 +73,6 @@ function Collection({ startTimer, baseURI, deadCutiesContract, numOfStateChanges
             return (
               <div key={i} className="collection__grid-item">
                 <img alt={"image"} src={link} width="350" height="350" />
-                {startTimer !== null && (
-                  <button
-                    onClick={() => {
-                      ReRoll(deadCutiesContract, arrayOfNFTIDs[i]);
-                    }}
-                  >
-                    Reroll (0.015 ETH)
-                  </button>
-                )}
               </div>
             );
           } else {

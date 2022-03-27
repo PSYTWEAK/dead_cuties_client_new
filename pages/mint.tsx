@@ -27,7 +27,7 @@ import useTokenBalance from "../hooks/useTokenBalance";
 import useDeadCutiesGetWalletIds from "../hooks/useDeadCutiesGetWalletIds";
 
 const ACCESS_TOKEN_ADDRESS = "0x536FBCcD358B8EdA0aa905f4B93A39B46C5227d2";
-const DEAD_CUTIES_ADDRESS = "0x98eb67d78081A3eACF5Be2a43Bca261b867A472D";
+const DEAD_CUTIES_ADDRESS = "0x02692941Aaa28E03C2BC0Cc460a6f4F40b319077";
 const BASE_URI = "bafybeibmhdtfmcxulooukbpunflussmvnwlqja36blwonhxip7zes27rqq";
 
 function Claim() {
